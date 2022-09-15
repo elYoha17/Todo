@@ -36,10 +36,12 @@
             <ul class="space-y-4">
                 @foreach ($tasks as $task)
                 <li class="px-4 py-2 bg-slate-100 border border-slate-300 rounded-lg hover:bg-slate-200 hover:shadow-lg">
-                    <div class="truncate">{{ $task->name }}</div>
-                    <div class="text-right border-t border-t-slate-300">
-                        <a href="{{ url($task->id) }}" class="text-xs hover:underline">Modifier</a>
-                    </div>
+                    <div class="pb-2 truncate"><a href="{{ url($task->id) }}" class="hover:underline">{{ $task->name }}</a></div>
+                    <form action="{{ url($task->id) }}" method="post" class="text-right border-t border-t-slate-300">
+                        @csrf
+                        @method('delete')
+                        <button type="submit" class="text-indigo-600 text-xs tracking-wide hover:underline">Réaliser</button>
+                    </form>
                 </li>
                 @endforeach
             </ul>
