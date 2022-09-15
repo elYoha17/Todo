@@ -30,6 +30,26 @@
             {{ $tasks->count() }} tâches
             @endif
         </div>
+
+        @if (session()->has('deletedTask'))
+
+        @php
+            $deleted = session()->get('deletedTask');
+        @endphp
+
+        <div class="mb-4 px-4 py-2 bg-red-300 border border-slate-300 rounded-lg">
+            <div class="flex justify-between items-center">
+                <div class="font-semibold">Tâche supprimée</div>
+                <form action="{{ url('create') }}" method="post">
+                    @csrf
+                    <input type="text" name="name" class="hidden" value="{{ $deleted->name }}">
+                    <button type="submit" class="text-xs tracking-wide hover:underline">Restaurer</button>
+                </form>
+            </div>
+            <div class="text-xs truncate">{{ $deleted->name }}</div>
+        </div>
+        @endif
+
         @if ($tasks->count())
         <ul class="space-y-4">
             @foreach ($tasks as $task)

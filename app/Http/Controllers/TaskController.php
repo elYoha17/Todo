@@ -49,6 +49,8 @@ class TaskController extends Controller
         $task = Task::where('id', $id)->firstOrFail();
         $task->delete();
 
+        session()->flash('deletedTask', $task);
+
         return redirect('');
     }
 }
