@@ -17,7 +17,7 @@
         <div class="py-2 text-sm text-center font-semibold tracking-wide">
             @if (!$tasks->  count())
             aucune tâche
-            @elseif (!$tasks->count() === 1)
+            @elseif ($tasks->count() === 1)
             1 tâche
             @else
             {{ $tasks->count() }} tâches
