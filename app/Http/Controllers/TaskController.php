@@ -9,7 +9,9 @@ class TaskController extends Controller
 {
     public function index()
     {
-        return view('index');
+        $tasks = Task::all();
+
+        return view('index', ['tasks' => $tasks]);
     }
 
     public function store(Request $request)
