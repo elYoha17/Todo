@@ -7,14 +7,21 @@
             {{ $task->name }}
         </div>
 
-        <form action="{{ url($task->id) }}" method="post" class="flex items-center mx-auto py-4 text-center">
+        <form action="{{ url($task->id) }}" method="post" class="flex items-start mx-auto py-4 text-center">
             @csrf
             @method('put')
-            <input
+            <div class="w-full">
+                <input
                 type="text"
                 name="name"
-                class="flex-1 px-3 py-1 rounded ring-2 ring-gray-400 hover:ring-2 hover:ring-blue-400 focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                placeholder="Modifier '{{ $task->name }}'">
+                class="w-full px-3 py-1 rounded ring-2 ring-gray-400 hover:ring-2 hover:ring-blue-400 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                placeholder="Ajouter une tâche">
+                <div class="px-2 pt-1 text-red-500 text-left">
+                @error('name')
+                    {{ $message }}
+                @enderror
+                </div>
+            </div>
             <button type="submit" class="ml-4 px-3 py-1 bg-indigo-200 font-semibold rounded ring-2 ring-indigo-300 hover:ring-2 hover:ring-indigo-500 active:bg-indigo-500">Modifier</button>
         </form>
     </div>
