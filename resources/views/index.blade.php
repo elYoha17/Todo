@@ -37,6 +37,9 @@
                 @foreach ($tasks as $task)
                 <li class="px-4 py-2 bg-slate-100 border border-slate-300 rounded-lg hover:bg-slate-200 hover:shadow-lg">
                     <div class="truncate">{{ $task->name }}</div>
+                    <div class="text-right border-t border-t-slate-300">
+                        <a href="{{ url($task->id) }}" class="text-xs hover:underline">Modifier</a>
+                    </div>
                 </li>
                 @endforeach
             </ul>

@@ -24,4 +24,23 @@ class TaskController extends Controller
 
         return redirect('');
     }
+
+    public function show(int $id)
+    {
+        $task = Task::where('id', $id)->firstOrFail();
+
+        return view('show', ['task' => $task]);
+    }
+
+    public function update(Request $request, int $id)
+    {
+        $data = $request->validate([
+            'name' => ['required', 'string', 'max:100', 'unique:tasks'],
+        ]);
+
+        $task = Task::where('id', $id)->firstOrFail();
+        $task->update($data);
+
+        return redirect($id);
+    }
 }
