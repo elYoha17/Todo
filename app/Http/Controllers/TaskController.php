@@ -9,7 +9,7 @@ class TaskController extends Controller
 {
     public function index()
     {
-        $tasks = Task::all();
+        $tasks = Task::orderBy('name')->get();
 
         return view('index', ['tasks' => $tasks]);
     }
