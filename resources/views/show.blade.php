@@ -7,23 +7,22 @@
             {{ $task->name }}
         </div>
 
-        <form action="{{ url($task->id) }}" method="post" class="flex items-start mx-auto py-4 text-center">
+        <form action="{{ url($task->id) }}" method="post" class="flex items-start gap-4 pt-4">
             @csrf
             @method('put')
-            <div class="w-full">
-                <input
+            <input
                 type="text"
                 name="name"
-                class="w-full px-3 py-1 rounded ring-2 ring-gray-400 hover:ring-2 hover:ring-blue-400 focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                placeholder="Ajouter une tâche">
-                <div class="px-2 pt-1 text-red-500 text-left">
-                @error('name')
-                    {{ $message }}
-                @enderror
-                </div>
-            </div>
-            <button type="submit" class="ml-4 px-3 py-1 bg-indigo-200 font-semibold rounded ring-2 ring-indigo-300 hover:ring-2 hover:ring-indigo-500 active:bg-indigo-500">Modifier</button>
+                value="{{ $task->name }}"
+                class="flex-1 px-3 py-1 rounded ring-2 ring-gray-400 hover:ring-2 hover:ring-blue-400 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                placeholder="Modifier une tâche">
+            <button type="submit" class="px-3 py-1 bg-indigo-200 font-semibold rounded ring-2 ring-indigo-300 hover:ring-2 hover:ring-indigo-500 active:bg-indigo-500">Modifier</button>
         </form>
+        <div class="px-2 text-red-500">
+            @error('name')
+            {{ $message }}
+            @enderror
+        </div>
     </div>
     <div class="text-center">
         <a href="{{ url('/') }}" class="text-xs hover:underline">Voir toutes les tâches</a>

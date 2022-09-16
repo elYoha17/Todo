@@ -3,22 +3,20 @@
     <div class="pb-4 border-b border-b-gray-600/25">
         <h1 class="mb-8 text-indigo-600 text-3xl text-center font-semibold">Todo List</h1>
 
-        <form action="{{ url('create') }}" method="post" class="w-96 mx-auto text-center">
+        <form action="{{ url('create') }}" method="post" class="flex items-center gap-4">
             @csrf
-            <div class="w-full">
-                <input
+            <input
                 type="text"
                 name="name"
-                class="w-full px-3 py-1 rounded ring-2 ring-gray-400 hover:ring-2 hover:ring-blue-400 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                class="flex-1 px-3 py-1 rounded ring-2 ring-gray-400 hover:ring-2 hover:ring-blue-400 focus:outline-none focus:ring-2 focus:ring-indigo-500"
                 placeholder="Ajouter une tâche">
-                <div class="px-2 pt-1 text-red-500 text-left">
-                @error('name')
-                    {{ $message }}
-                @enderror
-                </div>
-            </div>
-            <button type="submit" class="mt-4 px-3 py-1 bg-indigo-200 font-semibold rounded ring-2 ring-indigo-300 hover:ring-2 hover:ring-indigo-500 active:bg-indigo-500">Ajouter</button>
+            <button type="submit" class="px-3 py-1 bg-indigo-200 font-semibold rounded ring-2 ring-indigo-300 hover:ring-2 hover:ring-indigo-500 active:bg-indigo-500">Ajouter</button>
         </form>
+        <div class="px-2 text-red-500">
+            @error('name')
+            {{ $message }}
+            @enderror
+        </div>
     </div>
     <div>
         <div class="py-2 text-sm text-center font-semibold tracking-wide">
@@ -33,9 +31,9 @@
 
         @if (session()->has('deletedTask'))
 
-        @php
-            $deleted = session()->get('deletedTask');
-        @endphp
+            @php
+                $deleted = session()->get('deletedTask');
+            @endphp
 
         <div class="mb-4 px-4 py-2 bg-red-300 border border-slate-300 rounded-lg">
             <div class="flex justify-between items-center">
